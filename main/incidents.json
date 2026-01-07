@@ -1,0 +1,122 @@
+[
+  {
+    "id": "atk-001",
+    "title": "Phishing email delivered",
+    "description": "A targeted phishing email with a credential-harvesting link was delivered to multiple recipients.",
+    "start": "2025-12-01T08:15:00Z",
+    "end": "2025-12-01T08:15:00Z",
+    "asset": "Email-Relay",
+    "category": "phishing",
+    "severity": "high",
+    "host": "mail-gw01",
+    "tactic": "Initial Access"
+  },
+  {
+    "id": "atk-002",
+    "title": "User clicked malicious link",
+    "description": "An employee clicked the credential-harvesting link and submitted credentials to a fake portal.",
+    "start": "2025-12-01T08:32:00Z",
+    "end": "2025-12-01T08:32:00Z",
+    "asset": "User-Laptop-21",
+    "category": "phishing",
+    "severity": "high",
+    "host": "laptop-21",
+    "tactic": "Credential Access"
+  },
+  {
+    "id": "atk-003",
+    "title": "First-stage loader downloaded",
+    "description": "A small downloader (first-stage) was retrieved from a remote URL by the compromised browser.",
+    "start": "2025-12-01T08:35:00Z",
+    "end": "2025-12-01T08:35:30Z",
+    "asset": "User-Laptop-21",
+    "category": "downloader",
+    "severity": "high",
+    "host": "laptop-21",
+    "tactic": "Unknown"
+  },
+  {
+    "id": "atk-004",
+    "title": "Loader executed (first-stage)",
+    "description": "The downloaded loader was executed and attempted to persist and fetch secondary payloads.",
+    "start": "2025-12-01T08:37:00Z",
+    "end": "2025-12-01T08:40:00Z",
+    "asset": "User-Laptop-21",
+    "category": "execution",
+    "severity": "high",
+    "host": "laptop-21",
+    "tactic": "Execution"
+  },
+  {
+    "id": "atk-005",
+    "title": "Second-stage payload downloaded",
+    "description": "The loader fetched a larger second-stage payload (obfuscated binary) from a remote server.",
+    "start": "2025-12-01T08:50:00Z",
+    "end": "2025-12-01T08:50:30Z",
+    "asset": "User-Laptop-21",
+    "category": "malware",
+    "severity": "high",
+    "host": "laptop-21",
+    "tactic": "Execution"
+  },
+  {
+    "id": "atk-006",
+    "title": "Payload executed and persistence achieved",
+    "description": "The secondary payload executed, created persistence, and began reconnaissance on the local subnet.",
+    "start": "2025-12-01T09:05:00Z",
+    "end": "2025-12-01T09:20:00Z",
+    "asset": "Workstation-24",
+    "category": "malware",
+    "severity": "critical",
+    "host": "workstation-24",
+    "tactic": "Reconnaissance"
+  },
+  {
+    "id": "atk-007",
+    "title": "C2 communication established",
+    "description": "The compromised host established encrypted command-and-control (C2) sessions to an external IP.",
+    "start": "2025-12-01T09:10:00Z",
+    "end": "2025-12-01T09:10:00Z",
+    "asset": "Workstation-24",
+    "category": "c2",
+    "severity": "critical",
+    "host": "workstation-24",
+    "tactic": "Command and Control"
+  },
+  {
+    "id": "atk-008",
+    "title": "Lateral movement and data collection",
+    "description": "Attacker moved laterally to a file server and started aggregating sensitive business documents.",
+    "start": "2025-12-01T10:00:00Z",
+    "end": "2025-12-01T10:25:00Z",
+    "asset": "FileServer-03",
+    "category": "lateral-movement",
+    "severity": "high",
+    "host": "fileserver-03",
+    "tactic": "Lateral Movement"
+  },
+  {
+    "id": "atk-009",
+    "title": "Files compressed for exfil",
+    "description": "Collected documents were compressed and packaged in preparation for exfiltration.",
+    "start": "2025-12-01T10:30:00Z",
+    "end": "2025-12-01T10:35:00Z",
+    "asset": "FileServer-03",
+    "category": "data-prep",
+    "severity": "high",
+    "host": "fileserver-03",
+    "tactic": "Collection"
+  },
+  {
+    "id": "atk-010",
+    "title": "Data exfiltration to external host",
+    "description": "Compressed archive transferred to an external cloud storage endpoint over HTTPS.",
+    "start": "2025-12-01T11:00:00Z",
+    "end": "2025-12-01T11:12:00Z",
+    "asset": "FileServer-03",
+    "category": "data-exfiltration",
+    "severity": "critical",
+    "host": "fileserver-03",
+    "tactic": "Collection"
+  }
+]
