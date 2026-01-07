@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Output</title>
+    <style>
+      :root {
+        color-scheme: dark;
+      }
+      body {
+        font-family: monospace;
+        padding: 16px;
+        background: #0f1115;
+        color: #e5e7eb;
+      }
+      h1 {
+        margin: 0 0 12px;
+        font-size: 20px;
+        color: #cbd5e1;
+      }
+      .meta {
+        position: absolute;
+        top: 16px;
+        right: 16px;
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        font-size: 12px;
+        color: #ef4444;
+        text-align: right;
+      }
+      .meta div {
+        background: rgba(127, 29, 29, 0.2);
+        border: 1px solid #7f1d1d;
+        border-radius: 6px;
+        padding: 6px 10px;
+      }
+      .label {
+        color: #ef4444;
+        font-size: 10px;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+      }
+      .meta .muted {
+        color: #f87171;
+      }
+      pre {
+        white-space: pre-wrap;
+        word-break: break-word;
+        background: #111827;
+        border: 1px solid #1f2937;
+        border-radius: 6px;
+        padding: 12px;
+        min-height: 120px;
+      }
+      .muted {
+        color: #94a3b8;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Last AI Raw Output</h1>
+    <div class="meta">
+      <div>
+        <div class="label">Time Model Run</div>
+        <div id="meta-time" class="muted">(unknown)</div>
+      </div>
+      <div>
+        <div class="label">Model Name</div>
+        <div id="meta-model" class="muted">(unknown)</div>
+      </div>
+      <div>
+        <div class="label">Execution Time</div>
+        <div id="meta-duration" class="muted">(unknown)</div>
+      </div>
+      <div>
+        <div class="label">Prompt</div>
+        <div id="meta-prompt" class="muted">(unknown)</div>
+      </div>
+    </div>
+    <pre id="out" class="muted">(no data)</pre>
+    <script>
+      const data = localStorage.getItem('lastLLMRaw');
+      const metaTime = localStorage.getItem('lastLLMTime') || '';
+      const metaModel = localStorage.getItem('lastLLMModel') || '';
+      const metaDuration = localStorage.getItem('lastLLMDuration') || '';
+      const metaPrompt = localStorage.getItem('lastLLMPrompt') || '';
+
+      const tEl = document.getElementById('meta-time');
+      const mEl = document.getElementById('meta-model');
+      const dEl = document.getElementById('meta-duration');
+      const pEl = document.getElementById('meta-prompt');
+
+      tEl.textContent = metaTime || '(unknown)';
+      mEl.textContent = metaModel || '(unknown)';
+      dEl.textContent = metaDuration || '(unknown)';
+      pEl.textContent = metaPrompt || '(unknown)';
+
+      const el = document.getElementById('out');
+      if (data && data.trim()) {
+        el.textContent = data;
+        el.classList.remove('muted');
+      } else {
+        el.textContent = '(no data)';
+        el.classList.add('muted');
+      }
+    </script>
+  </body>
+</html>
