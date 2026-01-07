@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Output</title>
+    <style>
+      :root {
+        color-scheme: dark;
+      }
+      body {
+        font-family: monospace;
+        padding: 16px;
+        background: #0f1115;
+        color: #e5e7eb;
+      }
+      h1 {
+        margin: 0 0 12px;
+        font-size: 20px;
+        color: #cbd5e1;
+      }
+      .meta {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+        gap: 8px;
+        margin-bottom: 12px;
+        font-size: 13px;
+        color: #cbd5e1;
+      }
+      .meta div {
+        background: #111827;
+        border: 1px solid #1f2937;
+        border-radius: 6px;
+        padding: 8px 10px;
+      }
+      .label {
+        color: #94a3b8;
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+      }
+      pre {
+        white-space: pre-wrap;
+        word-break: break-word;
+        background: #111827;
+        border: 1px solid #1f2937;
+        border-radius: 6px;
+        padding: 12px;
+        min-height: 120px;
+      }
+      .muted {
+        color: #94a3b8;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Last AI Raw Output</h1>
+    <div class="meta">
+      <div>
+        <div class="label">Time Model Run</div>
+        <div id="meta-time" class="muted">(unknown)</div>
+      </div>
+      <div>
+        <div class="label">Model Name</div>
+        <div id="meta-model" class="muted">(unknown)</div>
+      </div>
+      <div>
+        <div class="label">Execution Time</div>
+        <div id="meta-duration" class="muted">(unknown)</div>
+      </div>
+    </div>
+    <pre id="out" class="muted">(no data)</pre>
+    <script>
+      const data = localStorage.getItem('lastLLMRaw');
+      const metaTime = localStorage.getItem('lastLLMTime') || '';
+      const metaModel = localStorage.getItem('lastLLMModel') || '';
+      const metaDuration = localStorage.getItem('lastLLMDuration') || '';
+
+      const tEl = document.getElementById('meta-time');
+      const mEl = document.getElementById('meta-model');
+      const dEl = document.getElementById('meta-duration');
+
+      tEl.textContent = metaTime || '(unknown)';
+      mEl.textContent = metaModel || '(unknown)';
+      dEl.textContent = metaDuration || '(unknown)';
+
+      const el = document.getElementById('out');
+      if (data && data.trim()) {
+        el.textContent = data;
+        el.classList.remove('muted');
+      } else {
+        el.textContent = '(no data)';
+        el.classList.add('muted');
+      }
+    </script>
+  </body>
+</html>
