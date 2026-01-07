@@ -1,0 +1,10 @@
+2025-12-01 08:15:00  Phishing email observed sent to j.smith (WIN10-CLT21), URL in the body pointing to “secure-office-login[.]com”. SRC IP 145.22.81.17.
+08:18:33Z User clicked the link https://secure-office-login.com/auth → redirected to credential stealing page (185.91.12.44)
+08:19:25   login attempt made to O365 – same user creds used from IP 185.91.12.44, UA looked like Chrome but weird version string.
+2025-12-01T08:20:40 download of suspicious binary “update-service.exe” from cdn-officeupdate[.]com/tool.exe – executed on WIn10-clt21.
+08:22:05    malware seems to have persistence (registry Run)... connections going out to 91.200.20.9 over 443. (possible C2)
+Approx 08:25 update-service.exe spawned another process "netenum.exe" which started enumerating AD, DC’s, users etc on that machine.
+08:27 svc-admin token used (not sure how yet) and “privsvc.exe” launched on DC-SERVER01. Looks like DA now??? 
+08:30 Full directory dump performed (ldapdump.ps1) running from DC-SERVER01. Output staged somewhere on client side share.
+08:33 Data archive created: ad-dump-20251201.zip in C:\ProgramData\Temp\ – seems to be prepped for movement.
+08:35-ish Zip exfil via HTTPS to https://c2-data-sync.net/upload using 91.200.20.9 – confirmed outbound bytes ↑
